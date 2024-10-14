@@ -1,0 +1,89 @@
+class Person {   //make a base class 'Person'
+    private String name;
+    private int age;
+
+    //Constructor
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    //method to display the person's information
+    public void displayInfo() {
+        System.out.println("Name: " + name);    
+        System.out.println("Age: " + age);
+    }
+}
+
+class Student extends Person {   //the class student inherit from the base class Person
+    private String studentID;
+    private String course;
+    private int units;
+    private final int feePerUnit = 1000;
+
+    //Constructor
+    public Student(String name, int age, String studentID, String course, int units) {
+        super(name, age);
+        this.studentID = studentID;
+        this.course = course;
+        this.units = units;
+    }
+
+    //method to calculate total fees
+    public double calculateFees() {
+        return units * feePerUnit;
+    }
+
+    @Override   //this is to override the displayInfo of the students
+    public void displayInfo() {
+        super.displayInfo();
+        System.out.println("Student ID: " + studentID);
+        System.out.println("Course: " + course);
+        System.out.println("Units: " + units);
+        System.out.println("Total Fee: " + calculateFees());
+    }
+}
+
+class Instructor extends Person {   
+    private String employeeID;
+    private String department;
+    private double salary;
+    
+    //Constructor
+    public Instructor(String name, int age, String employeeID, String department, double salary) {
+        super(name, age);
+        this.employeeID = employeeID;
+        this.department = department;
+        this.salary = salary;
+    }
+
+    @Override    //this is to override the displayInfo of the instructors
+    public void displayInfo() {
+        super.displayInfo();
+        System.out.println("Employee ID: " + employeeID);
+        System.out.println("Department: " + department);
+        System.out.println("Salary: " + salary);
+    }
+}
+
+class Test {
+    public static void main(String[] args) {
+        // Create two Student objects
+        Student student1 = new Student("Sofia", 18, "S2534", "Computer Engineering", 3);
+        Student student2 = new Student("Jarren", 21 , "S9645", "Mathematics", 4);
+
+        // Create two Instructor objects
+        Instructor instructor1 = new Instructor("Kyle", 32, "E2534", "College of Engineering and Architecture", 50000);
+        Instructor instructor2 = new Instructor("Pamela", 28, "E9645", "College of Arts and Sciences", 60000);
+
+        // Display information of students and instructors
+        System.out.println("Student 1 Information:");
+        student1.displayInfo();
+        System.out.println("\nStudent 2 Information:");
+        student2.displayInfo();
+        System.out.println("\nInstructor 1 Information:");
+        instructor1.displayInfo();
+        System.out.println("\nInstructor 2 Information:");
+        instructor2.displayInfo();
+    }
+}
